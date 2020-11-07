@@ -17,8 +17,13 @@ export const BasicForm = () => {
       selected.filter((g) => g !== e.target.value)
     );
 
-    useRecommendedStore.setState({ selectedGenres: selected });
+    useRecommendedStore.setState({ seed_genres: selected.toString() });
   };
+
+  const handleLimit = (e) => {
+    useRecommendedStore.setState({ limit: e.target.value });
+  };
+
   return (
     <div className="flex flex-col rounded-sm m-4 w-3/4">
       <ul className="list-none">
@@ -26,7 +31,7 @@ export const BasicForm = () => {
           <Checkbox key={genre} name={genre} handleChange={handleChange} />
         ))}
       </ul>
-      <Select />
+      <Select handleChange={handleLimit} />
     </div>
   );
 };

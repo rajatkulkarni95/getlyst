@@ -1,4 +1,4 @@
-export const Select = () => (
+export const Select = ({ handleChange }) => (
   <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0 my-2 mx-auto">
     <label
       className="block uppercase tracking-wide text-center text-white text-lg font-bold mb-2"
@@ -10,6 +10,7 @@ export const Select = () => (
       <select
         className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
         id="grid-state"
+        onChange={handleChange}
       >
         <option>10</option>
         <option>15</option>

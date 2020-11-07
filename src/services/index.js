@@ -27,10 +27,13 @@ export const getAvailableGenres = () => {
 };
 
 export const getRecommendedTracks = async (data) => {
-  await axios.get("https://api.spotify.com/v1/recommendations", {
-    params: data,
-    headers: headers,
-  });
+  console.log(data);
+  await axios
+    .get("https://api.spotify.com/v1/recommendations", {
+      params: data,
+      headers: headers,
+    })
+    .then(({ data: { tracks } }) => console.log(tracks));
 };
 
 export const search = () => {
