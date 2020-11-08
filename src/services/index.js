@@ -16,7 +16,7 @@ const headers = {
 export const getUser = () =>
   axios
     .get("https://api.spotify.com/v1/me", { headers })
-    .then(({ data }) => useStore.setState({ userID: data.id }));
+    .then(({ data }) => useStore.setState({ userID: data }));
 
 export const getAvailableGenres = () => {
   axios
@@ -32,14 +32,35 @@ export const getRecommendedTracks = async (data) => {
       params: data,
       headers: headers,
     })
-    .then(({ data: { tracks } }) => useStore.setState({ tracks: tracks }));
+    .then(({ data: { tracks } }) =>
+      useStore.setState({ recommendedTracks: tracks })
+    );
 };
 
-export const search = () => {
-  axios
-    .get("https://api.spotify.com/v1/search", {
-      params: { q: "tania bowra", type: "artist" },
-      headers: headers,
-    })
-    .then((data) => console.log(data));
+export const createPlaylist = async ({
+  playlistName,
+  description,
+  playlist_uris,
+  userID,
+}) => {
+  await axios
+    .post(
+      `https://api.spotify.com/v1/users/${userID.id}/playlists`,
+      {
+        name: playlistName,
+        description: description,
+        public: true,
+      },
+      { headers }
+    )
+    .then(({ data }) => data.id)
+    .then(
+      async (id) =>
+        await axios
+          .post(`https://api.spotify.com/v1/playlists/${id}/tracks`, null, {
+            params: { uris: playlist_uris },
+            headers: headers,
+          })
+          .then((data) => data)
+    );
 };
