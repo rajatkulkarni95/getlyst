@@ -36,3 +36,31 @@ export const getRecommendedTracks = async (data) => {
       useStore.setState({ recommendedTracks: tracks })
     );
 };
+
+export const createPlaylist = async ({
+  playlistName,
+  description,
+  playlist_uris,
+  userID,
+}) => {
+  await axios
+    .post(
+      `https://api.spotify.com/v1/users/${userID.id}/playlists`,
+      {
+        name: playlistName,
+        description: description,
+        public: true,
+      },
+      { headers }
+    )
+    .then(({ data }) => data.id)
+    .then(
+      async (id) =>
+        await axios
+          .post(`https://api.spotify.com/v1/playlists/${id}/tracks`, {
+            params: { uris: playlist_uris },
+            headers: headers,
+          })
+          .then((data) => console.log("Playlist Created"))
+    );
+};

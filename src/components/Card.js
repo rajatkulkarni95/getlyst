@@ -7,11 +7,9 @@ export const Card = ({ artists, name, album }) => {
           alt={album.name}
           className="m-2 w-12 h-12"
         />
-        <p className="text-white font-bold mx-2">{name}</p>
+        <p className="text-white font-bold mx-2 break-words">{name}</p>
       </div>
       <p className="text-green-400 text-sm">{artists[0].name}</p>
     </div>
   );
 };
-
-//*<div className="flex flex-col items-center p-4 w-48"> */

@@ -6,6 +6,8 @@ export const useStore = create((set) => ({
   access_token: token,
   genres: [],
   recommendedTracks: [],
+  playlistName: "GetLyst - Playlist #1267",
+  description: "GetLyst Recommended Tracks - Classical and Rock",
 }));
 
 export const useRecommendedStore = create((set) => ({
