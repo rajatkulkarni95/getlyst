@@ -16,7 +16,7 @@ const headers = {
 export const getUser = () =>
   axios
     .get("https://api.spotify.com/v1/me", { headers })
-    .then(({ data }) => useStore.setState({ userID: data.id }));
+    .then(({ data }) => useStore.setState({ userID: data }));
 
 export const getAvailableGenres = () => {
   axios
@@ -33,13 +33,4 @@ export const getRecommendedTracks = async (data) => {
       headers: headers,
     })
     .then(({ data: { tracks } }) => useStore.setState({ tracks: tracks }));
-};
-
-export const search = () => {
-  axios
-    .get("https://api.spotify.com/v1/search", {
-      params: { q: "tania bowra", type: "artist" },
-      headers: headers,
-    })
-    .then((data) => console.log(data));
 };
