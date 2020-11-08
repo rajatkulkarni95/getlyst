@@ -32,5 +32,7 @@ export const getRecommendedTracks = async (data) => {
       params: data,
       headers: headers,
     })
-    .then(({ data: { tracks } }) => useStore.setState({ tracks: tracks }));
+    .then(({ data: { tracks } }) =>
+      useStore.setState({ recommendedTracks: tracks })
+    );
 };

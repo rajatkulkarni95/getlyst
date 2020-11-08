@@ -5,7 +5,7 @@ export const useStore = create((set) => ({
   userID: {},
   access_token: token,
   genres: [],
-  recommendedTracks: {},
+  recommendedTracks: [],
 }));
 
 export const useRecommendedStore = create((set) => ({
