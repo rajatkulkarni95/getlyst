@@ -1,5 +1,5 @@
 export const Select = ({ handleChange }) => (
-  <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0 my-2 mx-auto">
+  <div className="w-full md:w-1/3 px-3 my-6 md:mb-0 my-2 mx-auto">
     <label
       className="block uppercase tracking-wide text-center text-white text-lg font-bold mb-2"
       htmlFor="grid-state"

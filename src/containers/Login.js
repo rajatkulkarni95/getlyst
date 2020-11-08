@@ -9,7 +9,7 @@ export const LoginScreen = () => {
       <Logo />
       <a
         href={`${BACKEND_URI}/login`}
-        className="bg-green-700 flex items-center hover:bg-green-900 text-white font-semibold py-2 px-5 text-xl rounded shadow-sm"
+        className="bg-green-700 flex uppercase text-base items-center hover:bg-green-900 text-white font-semibold py-4 px-6 rounded shadow-sm"
       >
         <FaSpotify className="mx-2" />
         Log in with Spotify

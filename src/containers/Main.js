@@ -4,6 +4,7 @@ import { getUser, getRecommendedTracks } from "../services";
 import { Navbar } from "../components/Navbar";
 import { BasicForm } from "../components/BasicForm";
 import { Button } from "../components/Button";
+import { useHistory } from "react-router-dom";
 
 export const MainScreen = () => {
   const { access_token } = useStore();
@@ -15,6 +16,8 @@ export const MainScreen = () => {
 
   const state = useRecommendedStore();
 
+  const history = useHistory();
+
   return (
     <div className="p-4">
       <Navbar />
@@ -23,7 +26,11 @@ export const MainScreen = () => {
           What do you fancy today?
         </h3>
         <BasicForm />
-        <Button handleClick={() => getRecommendedTracks(state)}>
+        <Button
+          handleClick={() =>
+            getRecommendedTracks(state).then(history.push("/review"))
+          }
+        >
           Fetch Songs
         </Button>
       </div>
