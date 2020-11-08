@@ -14,13 +14,13 @@ const setLocalAccessToken = (token) => {
   window.sessionStorage.setItem("spotify_access_token", token);
 };
 const setLocalRefreshToken = (token) =>
-  window.sessionStorage.setItem("spotify_refresh_token", token);
+  window.localStorage.setItem("spotify_refresh_token", token);
 const getTokenTimestamp = () =>
   window.sessionStorage.getItem("spotify_token_timestamp");
 const getLocalAccessToken = () =>
   window.sessionStorage.getItem("spotify_access_token");
 const getLocalRefreshToken = () =>
-  window.sessionStorage.getItem("spotify_refresh_token");
+  window.localStorage.getItem("spotify_refresh_token");
 
 // Refresh the token
 const refreshAccessToken = async () => {

@@ -57,10 +57,10 @@ export const createPlaylist = async ({
     .then(
       async (id) =>
         await axios
-          .post(`https://api.spotify.com/v1/playlists/${id}/tracks`, {
+          .post(`https://api.spotify.com/v1/playlists/${id}/tracks`, null, {
             params: { uris: playlist_uris },
             headers: headers,
           })
-          .then((data) => console.log("Playlist Created"))
+          .then((data) => data)
     );
 };
