@@ -45,7 +45,7 @@ export const BasicForm = () => {
   return (
     <>
       <ToastContainer />
-      <div className="flex flex-col rounded-sm m-4 w-3/4">
+      <div className="flex flex-col rounded-sm w-full m-2 md:m-4 md:w-3/4">
         <ul className="list-none">
           {popularGenres.map((genre) => (
             <Checkbox

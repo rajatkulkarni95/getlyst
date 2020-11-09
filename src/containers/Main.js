@@ -21,7 +21,7 @@ export const MainScreen = () => {
   return (
     <div className="p-4">
       <Navbar />
-      <div className="m-8 flex flex-col items-center">
+      <div className="md:m-8 m-2 flex flex-col items-center">
         <h3 className="text-white text-xl text-center font-semibold">
           What do you fancy today?
         </h3>
