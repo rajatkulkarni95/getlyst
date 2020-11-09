@@ -60,7 +60,16 @@ export const BasicForm = () => {
           <label className="mt-5 text-gray-500 font-semibold text-lg">
             Playlist Length
           </label>
-          <RangeSlider handleSliderChange={handleLimit} value={limit} />
+
+          <span className="text-black bg-gray-500 p-2 mt-2 rounded-md ">
+            {limit}
+          </span>
+          <RangeSlider
+            handleSliderChange={handleLimit}
+            value={limit}
+            min="1"
+            max="100"
+          />
         </div>
         <p className="text-white mx-auto">{rangeText}</p>
       </div>

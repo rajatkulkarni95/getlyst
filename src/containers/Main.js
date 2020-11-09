@@ -12,7 +12,7 @@ export const MainScreen = () => {
   useEffect(() => {
     getUser();
     return () => null;
-  }, [access_token]);
+  }, []);
 
   const state = useRecommendedStore();
 
@@ -22,7 +22,7 @@ export const MainScreen = () => {
     <div className="p-4">
       <Navbar />
       <div className="md:m-8 m-2 flex flex-col items-center">
-        <h3 className="text-white text-xl text-center font-semibold">
+        <h3 className="text-white text-xl md:text-2xl text-center font-semibold">
           What do you fancy today?
         </h3>
         <BasicForm />
