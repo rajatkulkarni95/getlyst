@@ -1,6 +1,4 @@
-import { RangeSlider } from "../components/RangeSlider";
-
-export const AdvancedForm = () => {
+/* export const AdvancedForm = () => {
   const musicProperties = [
     {
       name: "acoustiness",
@@ -34,3 +32,4 @@ export const AdvancedForm = () => {
     },
   ];
 };
+ */
