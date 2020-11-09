@@ -7,18 +7,18 @@ const BACKEND_URI = process.env.REACT_APP_SERVER || "http://localhost:8000";
 const EXPIRATION_TIME = 3600 * 1000; // 3600 seconds * 1000 = 1 hour in milliseconds
 
 const setTokenTimestamp = () =>
-  window.sessionStorage.setItem("spotify_token_timestamp", Date.now());
+  window.localStorage.setItem("spotify_token_timestamp", Date.now());
 
 const setLocalAccessToken = (token) => {
   setTokenTimestamp();
-  window.sessionStorage.setItem("spotify_access_token", token);
+  window.localStorage.setItem("spotify_access_token", token);
 };
 const setLocalRefreshToken = (token) =>
   window.localStorage.setItem("spotify_refresh_token", token);
 const getTokenTimestamp = () =>
-  window.sessionStorage.getItem("spotify_token_timestamp");
+  window.localStorage.getItem("spotify_token_timestamp");
 const getLocalAccessToken = () =>
-  window.sessionStorage.getItem("spotify_access_token");
+  window.localStorage.getItem("spotify_access_token");
 const getLocalRefreshToken = () =>
   window.localStorage.getItem("spotify_refresh_token");
 

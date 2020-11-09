@@ -3,6 +3,7 @@ import { useStore } from "../store";
 import { createPlaylist } from "../services";
 import { useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
+import { Navbar } from "../components/Navbar";
 
 export const Review = () => {
   const {
@@ -22,21 +23,22 @@ export const Review = () => {
   return (
     <div>
       <ToastContainer />
-      <div className="flex justify-between items-center w-3/4 mx-auto">
-        <div className="ml-3 inline-flex rounded-md shadow">
+      <Navbar />
+      <div className="flex justify-between items-center lg:w-3/4 mx-auto">
+        <div className="inline-flex rounded-md shadow">
           <button className="inline-flex font-sans items-center justify-center px-6 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-indigo-600 bg-white hover:text-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
             Rules
           </button>
         </div>
-        <h1 className="text-center font-extrabold text-white text-4xl p-5">
+        <h1 className="text-center font-extrabold text-xl text-white lg:text-4xl pb-4">
           Your Recommended Playlist
         </h1>
       </div>
-      <div className="flex justify-center items-center">
+      <div className="flex flex-col md:flex-row justify-center items-center">
         <div className="flex">
           <label
             htmlFor="playlist_name"
-            className="text-sm font-medium leading-5 text-gray-700 mx-2"
+            className="text-sm font-medium leading-5 text-gray-400 mx-2"
           >
             Playlist Name
           </label>
@@ -68,7 +70,7 @@ export const Review = () => {
               })
             )
           }
-          className="flex items-center justify-center px-4 py-2 border border-transparent text-sm leading-5 font-bold rounded-md text-black bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline transition ease-in-out duration-150"
+          className="flex mt-3 md:mt-0 items-center justify-center px-4 py-2 border border-transparent text-sm leading-5 font-bold rounded-md text-black bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline transition ease-in-out duration-150"
         >
           Add to Spotify
         </button>
