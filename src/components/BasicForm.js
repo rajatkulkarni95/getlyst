@@ -1,19 +1,23 @@
 import { useRecommendedStore } from "../store";
 import { Checkbox } from "./Checkbox";
 import { popularGenres } from "../constants/genres";
-import { Select } from "./Select";
+import { sliderText } from "../utils/sliderText";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { RangeSlider } from "./RangeSlider";
+import { useEffect } from "react";
 
 let selected = [];
 
 export const BasicForm = () => {
+  const { limit, rangeText } = useRecommendedStore();
+
   const handleChange = (e) => {
     if (e.target.checked) {
       if (selected.length < 5) {
         selected.push(e.target.value);
       } else {
-        toast.error("Up to 5 genres only allowed", {
+        toast.error("Up to 5 genres allowed", {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: true,
@@ -34,6 +38,10 @@ export const BasicForm = () => {
     useRecommendedStore.setState({ limit: e.target.value });
   };
 
+  useEffect(() => {
+    sliderText(limit);
+  }, [limit]);
+
   return (
     <>
       <ToastContainer />
@@ -48,7 +56,13 @@ export const BasicForm = () => {
             />
           ))}
         </ul>
-        <Select handleChange={handleLimit} />
+        <div className="flex flex-col items-center">
+          <label className="mt-5 text-gray-500 font-semibold text-lg">
+            Playlist Length
+          </label>
+          <RangeSlider handleSliderChange={handleLimit} value={limit} />
+        </div>
+        <p className="text-white mx-auto">{rangeText}</p>
       </div>
     </>
   );
