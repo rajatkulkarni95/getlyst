@@ -12,6 +12,6 @@ export const useStore = create((set) => ({
 
 export const useRecommendedStore = create((set) => ({
   seed_genres: "",
-  limit: 40,
+  limit: 25,
   rangeText: "Stuff",
 }));
