@@ -3,7 +3,7 @@ import { useStore } from "../store";
 import { logout } from "../utils/logout";
 
 export const Navbar = () => {
-  const { userID } = useStore();
+  const user = window.localStorage.getItem("user");
 
   const [show, setShow] = useState(false);
 
@@ -22,7 +22,7 @@ export const Navbar = () => {
             aria-haspopup="true"
             onClick={() => setShow(!show)}
           >
-            {userID.id}
+            {user}
           </button>
         </div>
 
