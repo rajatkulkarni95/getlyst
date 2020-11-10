@@ -1,7 +1,12 @@
-import { Routes } from "./routes";
+import { ProtectedRoutes } from "./routes";
+import { Fragment } from "react";
 
 function App() {
-  return <Routes />;
+  return (
+    <Fragment>
+      <ProtectedRoutes />
+    </Fragment>
+  );
 }
 
 export default App;

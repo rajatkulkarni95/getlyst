@@ -1,30 +1,30 @@
-import { useRecommendedStore } from "../store";
+import { useRecommendedStore, useStore } from "../store";
 import { Checkbox } from "./Checkbox";
 import { popularGenres } from "../constants/genres";
 import { sliderText } from "../utils/sliderText";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useSnackbar } from "notistack";
 import { RangeSlider } from "./RangeSlider";
 import { useEffect } from "react";
 
 let selected = [];
 
 export const BasicForm = () => {
-  const { limit, rangeText } = useRecommendedStore();
+  const { limit } = useRecommendedStore();
+  const { rangeText } = useStore();
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleChange = (e) => {
     if (e.target.checked) {
       if (selected.length < 5) {
         selected.push(e.target.value);
       } else {
-        toast.error("Up to 5 genres allowed", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
+        enqueueSnackbar("Upto 5 Genres allowed", {
+          preventDuplicate: true,
+          anchorOrigin: {
+            vertical: "top",
+            horizontal: "center",
+          },
+          variant: "error",
         });
       }
     } else {
@@ -44,8 +44,7 @@ export const BasicForm = () => {
 
   return (
     <>
-      <ToastContainer />
-      <div className="flex flex-col rounded-sm w-full m-2 md:m-4 md:w-3/4">
+      <div className="flex flex-col rounded-sm w-full m-2 md:m-4 lg:w-3/4">
         <ul className="list-none">
           {popularGenres.map((genre) => (
             <Checkbox

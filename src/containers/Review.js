@@ -1,85 +1,73 @@
-import { Card } from "../components/Card";
-import { useStore } from "../store";
-import { createPlaylist } from "../services";
+import { useRecommendedStore, useStore } from "../store";
+import { getPlaylistDetails } from "../services";
 import { useEffect } from "react";
-import { toast, ToastContainer } from "react-toastify";
+import { useSnackbar } from "notistack";
 import { Navbar } from "../components/Navbar";
+import { Link } from "react-router-dom";
 
 export const Review = () => {
-  const {
-    recommendedTracks,
-    playlistName,
-    playlist_uris,
-    description,
-    userID,
-  } = useStore();
+  const { playlistID, playlistData } = useStore();
+  const { seed_genres } = useRecommendedStore();
+
+  const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
-    useStore.setState({
-      playlist_uris: recommendedTracks.map((track) => track.uri).toString(),
-    });
-  }, [recommendedTracks]);
+    getPlaylistDetails(playlistID).then(({ data }) =>
+      useStore.setState({ playlistData: data })
+    );
+  }, [enqueueSnackbar, playlistID]);
 
   return (
-    <div>
-      <ToastContainer />
+    <>
       <Navbar />
-      <div className="flex justify-between items-center lg:w-3/4 mx-auto">
-        <div className="inline-flex rounded-md shadow">
-          <button className="inline-flex font-sans items-center justify-center px-6 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-indigo-600 bg-white hover:text-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
-            Rules
-          </button>
-        </div>
-        <h1 className="text-center font-extrabold text-xl text-white lg:text-4xl pb-4">
-          Your Recommended Playlist
-        </h1>
-      </div>
-      <div className="flex flex-col md:flex-row justify-center items-center">
-        <div className="flex">
-          <label
-            htmlFor="playlist_name"
-            className="text-sm font-medium leading-5 text-gray-400 mx-2"
-          >
-            Playlist Name
-          </label>
-          <input
-            id="playlist_name"
-            className="mx-2 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-            value={playlistName}
-            onChange={(e) =>
-              useStore.setState({ playlistName: e.target.value })
-            }
-          />
-        </div>
-        <button
-          onClick={async () =>
-            await createPlaylist({
-              playlistName,
-              description,
-              playlist_uris,
-              userID,
-            }).then(
-              toast.success("Playlist Created", {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-              })
-            )
-          }
-          className="flex mt-3 md:mt-0 items-center justify-center px-4 py-2 border border-transparent text-sm leading-5 font-bold rounded-md text-black bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline transition ease-in-out duration-150"
+      <div className="flex flex-col justify-between items-center w-3/4 mx-auto my-4">
+        {playlistData && playlistData.name ? (
+          <>
+            <h1 className="text-center font-extrabold text-xl text-white lg:text-4xl pb-4">
+              Your Playlist is Ready!
+            </h1>
+            <img
+              src={playlistData.images[0].url}
+              alt={playlistData.name}
+              className="rounded w-48 h-48 md:w-84 md:h-84 mb-5"
+            />
+            <div>
+              <h2 className="text-2xl font-bold text-green-400 text-center">
+                {playlistData.name}
+              </h2>
+              <p className="text-gray-400 text-center">
+                {playlistData.tracks.total}{" "}
+                <span className="text-white">Songs</span>
+              </p>
+              <p className="text-gray-400 text-center">
+                Genres : {seed_genres}
+              </p>
+            </div>
+            <a
+              href={playlistData.external_urls.spotify}
+              className="flex items-center my-3 w-3/4 md:w-64 justify-center px-4 py-2 border border-transparent text-sm leading-5 font-bold rounded-md text-black bg-gray-100 hover:text-green-700 focus:outline-none focus:shadow-outline transition ease-in-out duration-150 cursor-pointer text-center"
+            >
+              Go to Playlist
+            </a>{" "}
+          </>
+        ) : (
+          enqueueSnackbar("Unable to Get Playlist Details", {
+            preventDuplicate: true,
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "center",
+            },
+            variant: "error",
+          })
+        )}
+
+        <Link
+          to="/app"
+          className="flex items-center  w-3/4 md:w-64 justify-center px-4 py-2 border border-transparent text-sm leading-5 font-bold rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline transition ease-in-out duration-150 cursor-pointer text-center"
         >
-          Add to Spotify
-        </button>
+          Create More Playlists
+        </Link>
       </div>
-      <div className="flex justify-center flex-wrap p-4 w-full mx-auto">
-        {recommendedTracks.map((track) => (
-          <Card key={track.id} {...track} />
-        ))}
-      </div>
-    </div>
+    </>
   );
 };

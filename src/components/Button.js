@@ -2,8 +2,27 @@ export const Button = ({ children, handleClick }) => {
   return (
     <button
       onClick={handleClick}
-      className="flex mt-3 md:mt-0 items-center justify-center px-6 py-3 border border-transparent text-lg leading-5 font-bold rounded-md text-black bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline transition ease-in-out duration-150"
+      className="flex mt-3 md:mt-0 items-center justify-center px-6 py-3 border border-transparent text-lg leading-5 font-bold rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline transition ease-in-out duration-150"
     >
+      {children}
+    </button>
+  );
+};
+
+export const LinkButton = ({ href, children }) => {
+  return (
+    <a
+      href={href}
+      className="bg-green-700 flex uppercase text-base items-center hover:bg-green-900 text-white font-semibold py-4 px-6 rounded shadow-sm"
+    >
+      {children}
+    </a>
+  );
+};
+
+export const SecondaryButton = ({ children }) => {
+  return (
+    <button className="hidden float-right lg:block font-sans items-center justify-center lg:px-6 lg:py-2 border border-transparent text-base leading-6 font-medium rounded-md text-indigo-600 bg-white hover:text-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
       {children}
     </button>
   );

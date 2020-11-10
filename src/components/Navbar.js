@@ -1,17 +1,19 @@
 import { useState } from "react";
-import { useStore } from "../store";
+import { Link } from "react-router-dom";
 import { logout } from "../utils/logout";
 
 export const Navbar = () => {
-  const { userID } = useStore();
+  const user = window.localStorage.getItem("user");
 
   const [show, setShow] = useState(false);
 
   return (
     <nav className="flex justify-between items-center px-6 py-3">
-      <h1 className="text-white text-3xl font-bold text-center mx-2">
-        GetLyst
-      </h1>
+      <Link to="/">
+        <h1 className="text-white text-3xl font-bold text-center mx-2">
+          Get<span className="text-green-500">Lyst</span>
+        </h1>
+      </Link>
       {/* <div className="text-green-600 text-xl font-semibold">{userID.id}</div> */}
       <div className="ml-3 relative">
         <div>
@@ -22,7 +24,7 @@ export const Navbar = () => {
             aria-haspopup="true"
             onClick={() => setShow(!show)}
           >
-            {userID.id}
+            {user}
           </button>
         </div>
 

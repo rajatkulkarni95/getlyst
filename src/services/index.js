@@ -16,7 +16,11 @@ const headers = {
 export const getUser = () =>
   axios
     .get("https://api.spotify.com/v1/me", { headers })
-    .then(({ data }) => useStore.setState({ userID: data }));
+    .then(({ data }) => {
+      useStore.setState({ userID: data });
+      window.localStorage.setItem("user", data.id);
+    })
+    .catch((err) => console.log(err));
 
 export const getAvailableGenres = () => {
   axios
@@ -34,7 +38,8 @@ export const getRecommendedTracks = async (data) => {
     })
     .then(({ data: { tracks } }) =>
       useStore.setState({ recommendedTracks: tracks })
-    );
+    )
+    .catch((error) => "Error: Could not find recommendations");
 };
 
 export const createPlaylist = async ({
@@ -53,14 +58,24 @@ export const createPlaylist = async ({
       },
       { headers }
     )
-    .then(({ data }) => data.id)
-    .then(
-      async (id) =>
-        await axios
-          .post(`https://api.spotify.com/v1/playlists/${id}/tracks`, null, {
-            params: { uris: playlist_uris },
-            headers: headers,
-          })
-          .then((data) => data)
-    );
+    .then(({ data }) => {
+      useStore.setState({ playlistID: data.id });
+      return axios.post(
+        `https://api.spotify.com/v1/playlists/${data.id}/tracks`,
+        null,
+        {
+          params: { uris: playlist_uris },
+          headers: headers,
+        }
+      );
+    })
+    .then((data) => data)
+
+    .catch((error) => "Error: Unable to create playlists");
+};
+
+export const getPlaylistDetails = async (playlistID) => {
+  return await axios
+    .get(`https://api.spotify.com/v1/playlists/${playlistID}`, { headers })
+    .catch((error) => error.response);
 };
