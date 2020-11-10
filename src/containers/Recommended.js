@@ -41,15 +41,15 @@ export const Recommended = () => {
     <div>
       <Navbar />
       <div className="lg:w-3/4 mx-auto flex justify-center">
-        <h1 className="text-center font-extrabold text-xl text-white lg:text-4xl pb-4">
+        <h1 className="text-center font-extrabold text-xl text-white md:text-4xl pb-4">
           Your Recommended Playlist
         </h1>
       </div>
       <div className="flex flex-col md:flex-row justify-center items-center sm:w-full md:w-auto">
-        <div className="flex mx-2 mb-2 md:mb-0">
+        <div className="flex mx-2 mb-2 md:mb-0 rounded-md">
           <input
             id="playlist_name"
-            className="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+            className="form-input block w-full transition duration-150 px-4 ease-in-out sm:text-sm sm:leading-5"
             value={playlistName}
             onChange={(e) =>
               useStore.setState({ playlistName: e.target.value })
@@ -65,7 +65,7 @@ export const Recommended = () => {
               userID,
             }).then((id) => handleSubmit())
           }
-          className="flex items-center w-3/4 md:w-auto justify-center px-4 py-2 border border-transparent text-sm leading-5 font-bold rounded-md text-black bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline transition ease-in-out duration-150"
+          className="flex items-center w-3/4 md:w-auto justify-center px-4 py-2 border border-transparent text-sm leading-5 font-bold rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline transition ease-in-out duration-150"
         >
           Add to Spotify
         </button>

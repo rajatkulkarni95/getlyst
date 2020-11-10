@@ -1,4 +1,4 @@
-import { LoginRoute, ProtectedRoutes } from "./routes";
+import { ProtectedRoutes } from "./routes";
 import { Fragment } from "react";
 
 function App() {

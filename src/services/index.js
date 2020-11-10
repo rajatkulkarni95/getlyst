@@ -75,8 +75,7 @@ export const createPlaylist = async ({
 };
 
 export const getPlaylistDetails = async (playlistID) => {
-  await axios
+  return await axios
     .get(`https://api.spotify.com/v1/playlists/${playlistID}`, { headers })
-    .then(({ data }) => console.log(data))
     .catch((error) => error.response);
 };

@@ -9,6 +9,7 @@ export const useStore = create((set) => ({
   playlistName: "GetLyst - Playlist #1267",
   description: "GetLyst Recommended Tracks - Classical and Rock",
   rangeText: "Stuff",
+  playlistData: {},
 }));
 
 export const useRecommendedStore = create((set) => ({
