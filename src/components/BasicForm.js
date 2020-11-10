@@ -1,4 +1,4 @@
-import { useRecommendedStore } from "../store";
+import { useRecommendedStore, useStore } from "../store";
 import { Checkbox } from "./Checkbox";
 import { popularGenres } from "../constants/genres";
 import { sliderText } from "../utils/sliderText";
@@ -9,7 +9,8 @@ import { useEffect } from "react";
 let selected = [];
 
 export const BasicForm = () => {
-  const { limit, rangeText } = useRecommendedStore();
+  const { limit } = useRecommendedStore();
+  const { rangeText } = useStore();
   const { enqueueSnackbar } = useSnackbar();
 
   const handleChange = (e) => {
@@ -43,7 +44,7 @@ export const BasicForm = () => {
 
   return (
     <>
-      <div className="flex flex-col rounded-sm w-full m-2 md:m-4 md:w-3/4">
+      <div className="flex flex-col rounded-sm w-full m-2 md:m-4 lg:w-3/4">
         <ul className="list-none">
           {popularGenres.map((genre) => (
             <Checkbox
