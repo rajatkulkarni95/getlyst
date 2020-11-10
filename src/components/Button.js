@@ -8,3 +8,22 @@ export const Button = ({ children, handleClick }) => {
     </button>
   );
 };
+
+export const LinkButton = ({ href, children }) => {
+  return (
+    <a
+      href={href}
+      className="bg-green-700 flex uppercase text-base items-center hover:bg-green-900 text-white font-semibold py-4 px-6 rounded shadow-sm"
+    >
+      {children}
+    </a>
+  );
+};
+
+export const SecondaryButton = ({ children }) => {
+  return (
+    <button className="hidden float-right lg:block font-sans items-center justify-center lg:px-6 lg:py-2 border border-transparent text-base leading-6 font-medium rounded-md text-indigo-600 bg-white hover:text-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+      {children}
+    </button>
+  );
+};

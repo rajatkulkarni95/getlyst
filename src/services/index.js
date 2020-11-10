@@ -14,9 +14,10 @@ const headers = {
  */
 
 export const getUser = () =>
-  axios
-    .get("https://api.spotify.com/v1/me", { headers })
-    .then(({ data }) => useStore.setState({ userID: data }));
+  axios.get("https://api.spotify.com/v1/me", { headers }).then(({ data }) => {
+    useStore.setState({ userID: data });
+    window.localStorage.setItem("user", data.id);
+  });
 
 export const getAvailableGenres = () => {
   axios

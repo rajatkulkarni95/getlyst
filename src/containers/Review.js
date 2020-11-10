@@ -2,8 +2,9 @@ import { Card } from "../components/Card";
 import { useStore } from "../store";
 import { createPlaylist } from "../services";
 import { useEffect } from "react";
-import { toast, ToastContainer } from "react-toastify";
 import { Navbar } from "../components/Navbar";
+import { useSnackbar } from "notistack";
+import { SecondaryButton } from "../components/Button";
 
 export const Review = () => {
   const {
@@ -14,6 +15,8 @@ export const Review = () => {
     userID,
   } = useStore();
 
+  const { enqueueSnackbar } = useSnackbar();
+
   useEffect(() => {
     useStore.setState({
       playlist_uris: recommendedTracks.map((track) => track.uri).toString(),
@@ -22,14 +25,8 @@ export const Review = () => {
 
   return (
     <div>
-      <ToastContainer />
       <Navbar />
-      <div className="flex justify-between items-center lg:w-3/4 mx-auto">
-        <div className="inline-flex rounded-md shadow">
-          <button className="inline-flex font-sans items-center justify-center px-6 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-indigo-600 bg-white hover:text-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
-            Rules
-          </button>
-        </div>
+      <div className="lg:w-3/4 mx-auto flex justify-center">
         <h1 className="text-center font-extrabold text-xl text-white lg:text-4xl pb-4">
           Your Recommended Playlist
         </h1>
@@ -59,14 +56,13 @@ export const Review = () => {
               playlist_uris,
               userID,
             }).then(
-              toast.success("Playlist Created", {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
+              enqueueSnackbar("Playlist Created", {
+                preventDuplicate: true,
+                anchorOrigin: {
+                  vertical: "top",
+                  horizontal: "center",
+                },
+                variant: "success",
               })
             )
           }
