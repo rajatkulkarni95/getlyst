@@ -25,9 +25,9 @@ const getLocalRefreshToken = () =>
 // Refresh the token
 const refreshAccessToken = async () => {
   try {
-    const { data } = await axios.get(
-      `${BACKEND_URI}/refresh-token?refresh_token=${getLocalRefreshToken()}`
-    );
+    const { data } = await axios.get(`${BACKEND_URI}/refresh-token`, {
+      params: { refresh_token: getLocalRefreshToken() },
+    });
     const { access_token } = data;
     setLocalAccessToken(access_token);
     window.location.reload();

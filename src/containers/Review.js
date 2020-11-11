@@ -12,9 +12,18 @@ export const Review = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
-    getPlaylistDetails(playlistID).then(({ data }) =>
-      useStore.setState({ playlistData: data })
-    );
+    getPlaylistDetails(playlistID)
+      .then(({ data }) => useStore.setState({ playlistData: data }))
+      .catch((err) =>
+        enqueueSnackbar("Unable to Get Playlist Details", {
+          preventDuplicate: true,
+          anchorOrigin: {
+            vertical: "top",
+            horizontal: "center",
+          },
+          variant: "error",
+        })
+      );
   }, [enqueueSnackbar, playlistID]);
 
   return (
@@ -35,12 +44,13 @@ export const Review = () => {
               <h2 className="text-2xl font-bold text-green-400 text-center">
                 {playlistData.name}
               </h2>
-              <p className="text-gray-400 text-center">
+              <p className="text-gray-400 text-center font-semibold">
                 {playlistData.tracks.total}{" "}
                 <span className="text-white">Songs</span>
               </p>
               <p className="text-gray-400 text-center">
-                Genres : {seed_genres}
+                Genres :{" "}
+                <span className="text-white font-semibold">{seed_genres}</span>
               </p>
             </div>
             <a
@@ -51,14 +61,9 @@ export const Review = () => {
             </a>{" "}
           </>
         ) : (
-          enqueueSnackbar("Unable to Get Playlist Details", {
-            preventDuplicate: true,
-            anchorOrigin: {
-              vertical: "top",
-              horizontal: "center",
-            },
-            variant: "error",
-          })
+          <h2 className="text-white text-center text-xl my-2">
+            Uh Oh! Something went wrong :(
+          </h2>
         )}
 
         <Link

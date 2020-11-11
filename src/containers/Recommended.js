@@ -49,7 +49,7 @@ export const Recommended = () => {
         <div className="flex mx-2 mb-2 md:mb-0 rounded-md">
           <input
             id="playlist_name"
-            className="form-input block w-full transition duration-150 px-4 ease-in-out sm:text-sm sm:leading-5"
+            className="bg-gray-300 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-500"
             value={playlistName}
             onChange={(e) =>
               useStore.setState({ playlistName: e.target.value })

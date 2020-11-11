@@ -5,18 +5,41 @@ import { Navbar } from "../components/Navbar";
 import { BasicForm } from "../components/BasicForm";
 import { Button } from "../components/Button";
 import { useHistory } from "react-router-dom";
+import { useSnackbar } from "notistack";
 
 export const MainScreen = () => {
   const { access_token } = useStore();
+  const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
-    getUser();
+    const user = window.localStorage.getItem("user");
+    if (!user) {
+      getUser();
+    }
+
     return () => null;
   }, [access_token]);
 
   const state = useRecommendedStore();
+  const { seed_genres } = useRecommendedStore();
 
   const history = useHistory();
+
+  const handleSubmit = (e) => {
+    if (!seed_genres) {
+      e.preventDefault();
+      enqueueSnackbar("Select atleast 1 Genre", {
+        preventDuplicate: true,
+        anchorOrigin: {
+          vertical: "top",
+          horizontal: "center",
+        },
+        variant: "error",
+      });
+    } else {
+      getRecommendedTracks(state).then(history.push("/review"));
+    }
+  };
 
   return (
     <div className="p-4">
@@ -26,11 +49,7 @@ export const MainScreen = () => {
           What do you fancy today?
         </h3>
         <BasicForm />
-        <Button
-          handleClick={() =>
-            getRecommendedTracks(state).then(history.push("/review"))
-          }
-        >
+        <Button type="submit" handleClick={handleSubmit}>
           Fetch Songs
         </Button>
       </div>
