@@ -8,12 +8,12 @@ import { useHistory } from "react-router-dom";
 import { useSnackbar } from "notistack";
 
 export const MainScreen = () => {
-  const { access_token } = useStore();
+  const { access_token, userID } = useStore();
   const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
     const user = window.localStorage.getItem("user");
-    if (!user) {
+    if (!user || user === "undefined") {
       getUser();
     }
 

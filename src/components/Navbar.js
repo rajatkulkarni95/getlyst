@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useStore } from "../store";
 import { logout } from "../utils/logout";
 
 export const Navbar = () => {
-  const user = window.localStorage.getItem("user");
+  const { userID } = useStore();
 
   const [show, setShow] = useState(false);
 
@@ -24,7 +25,7 @@ export const Navbar = () => {
             aria-haspopup="true"
             onClick={() => setShow(!show)}
           >
-            {user}
+            {userID.id}
           </button>
         </div>
 

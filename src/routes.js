@@ -2,6 +2,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { LoginScreen } from "./containers/Login";
 import { MainScreen } from "./containers/Main";
 import { Recommended } from "./containers/Recommended";
+import { Error } from "./containers/Error";
 import { Review } from "./containers/Review";
 import { useStore } from "./store";
 /*import { lazy, Suspense } from "react";
@@ -19,6 +20,9 @@ export const ProtectedRoutes = () => {
       <ProtectedRoute path="/app" component={MainScreen} />
       <ProtectedRoute path="/review" component={Recommended} />
       <ProtectedRoute path="/done" component={Review} />
+      <Route>
+        <Error />
+      </Route>
     </Switch>
   );
 };

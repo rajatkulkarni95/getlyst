@@ -1,5 +1,6 @@
 import axios from "axios";
 import { getHashParams } from "./utils/hashParams";
+import { logout } from "./utils/logout";
 
 const BACKEND_URI = process.env.REACT_APP_SERVER || "http://localhost:8000";
 
@@ -49,6 +50,7 @@ export const getAccessToken = () => {
   // If token has expired
   if (Date.now() - getTokenTimestamp() > EXPIRATION_TIME) {
     console.warn("Access token has expired, refreshing...");
+
     refreshAccessToken();
   }
 
