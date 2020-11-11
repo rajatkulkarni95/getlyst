@@ -17,7 +17,6 @@ export const getUser = () =>
   axios
     .get("https://api.spotify.com/v1/me", { headers })
     .then(({ data }) => {
-      useStore.setState({ userID: data });
       window.localStorage.setItem("user", data.id);
     })
     .catch((err) => console.log(err));
@@ -50,7 +49,7 @@ export const createPlaylist = async ({
 }) => {
   await axios
     .post(
-      `https://api.spotify.com/v1/users/${userID.id}/playlists`,
+      `https://api.spotify.com/v1/users/${userID}/playlists`,
       {
         name: playlistName,
         description: description,

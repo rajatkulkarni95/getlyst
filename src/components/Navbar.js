@@ -1,9 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getUser } from "../services";
+import { useStore } from "../store";
 import { logout } from "../utils/logout";
 
 export const Navbar = () => {
-  const user = window.localStorage.getItem("user");
+  const { userID } = useStore();
+
+  useEffect(() => {
+    const user = window.localStorage.getItem("user");
+    if (!user || user === "undefined") {
+      getUser();
+    } else {
+      useStore.setState({ userID: user });
+    }
+
+    return () => null;
+  }, []);
 
   const [show, setShow] = useState(false);
 
@@ -14,7 +27,7 @@ export const Navbar = () => {
           Get<span className="text-green-500">Lyst</span>
         </h1>
       </Link>
-      {/* <div className="text-green-600 text-xl font-semibold">{userID.id}</div> */}
+
       <div className="ml-3 relative">
         <div>
           <button
@@ -24,7 +37,7 @@ export const Navbar = () => {
             aria-haspopup="true"
             onClick={() => setShow(!show)}
           >
-            {user}
+            {userID}
           </button>
         </div>
 

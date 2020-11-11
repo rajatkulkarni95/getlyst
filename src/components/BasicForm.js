@@ -30,7 +30,7 @@ export const BasicForm = () => {
     } else {
       selected = selected.filter((g) => g !== e.target.value);
     }
-
+    useStore.setState({ genres: selected });
     useRecommendedStore.setState({ seed_genres: selected.toString() });
   };
 
