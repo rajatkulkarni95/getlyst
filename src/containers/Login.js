@@ -5,7 +5,7 @@ import { LinkButton } from "../components/Button";
 import { Logo } from "../components/Logo";
 import { useStore } from "../store";
 
-export const LoginScreen = () => {
+const LoginScreen = () => {
   const BACKEND_URI = process.env.REACT_APP_SERVER || "http://localhost:8080";
   const { access_token } = useStore();
   const history = useHistory();
@@ -17,9 +17,11 @@ export const LoginScreen = () => {
       <Logo />
       <LinkButton href={`${BACKEND_URI}/login`}>
         {" "}
-        <FaSpotify className="mx-2" />
+        <FaSpotify className="mx-2 text-2xl" />
         Log in with Spotify
       </LinkButton>
     </div>
   );
 };
+
+export default LoginScreen;

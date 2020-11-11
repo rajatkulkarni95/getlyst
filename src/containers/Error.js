@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Navbar } from "../components/Navbar";
 
-export const Error = () => {
+const ErrorPage = () => {
   return (
     <Fragment>
       <Navbar />
@@ -18,3 +18,5 @@ export const Error = () => {
     </Fragment>
   );
 };
+
+export default ErrorPage;

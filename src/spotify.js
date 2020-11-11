@@ -1,6 +1,5 @@
 import axios from "axios";
 import { getHashParams } from "./utils/hashParams";
-import { logout } from "./utils/logout";
 
 const BACKEND_URI = process.env.REACT_APP_SERVER || "http://localhost:8000";
 

@@ -1,24 +1,13 @@
-import { useEffect } from "react";
-import { useRecommendedStore, useStore } from "../store";
-import { getUser, getRecommendedTracks } from "../services";
+import { useRecommendedStore } from "../store";
+import { getRecommendedTracks } from "../services";
 import { Navbar } from "../components/Navbar";
 import { BasicForm } from "../components/BasicForm";
 import { Button } from "../components/Button";
 import { useHistory } from "react-router-dom";
 import { useSnackbar } from "notistack";
 
-export const MainScreen = () => {
-  const { access_token, userID } = useStore();
+const MainScreen = () => {
   const { enqueueSnackbar } = useSnackbar();
-
-  useEffect(() => {
-    const user = window.localStorage.getItem("user");
-    if (!user || user === "undefined") {
-      getUser();
-    }
-
-    return () => null;
-  }, [access_token]);
 
   const state = useRecommendedStore();
   const { seed_genres } = useRecommendedStore();
@@ -37,7 +26,7 @@ export const MainScreen = () => {
         variant: "error",
       });
     } else {
-      getRecommendedTracks(state).then(history.push("/review"));
+      getRecommendedTracks(state).then(history.push("/recommended"));
     }
   };
 
@@ -56,3 +45,5 @@ export const MainScreen = () => {
     </div>
   );
 };
+
+export default MainScreen;

@@ -2,7 +2,7 @@ import create from "zustand";
 import { token } from "../spotify";
 
 export const useStore = create((set) => ({
-  userID: {},
+  userID: "",
   access_token: token,
   genres: [],
   recommendedTracks: [],
@@ -10,6 +10,7 @@ export const useStore = create((set) => ({
   description: "GetLyst Recommended Tracks - Classical and Rock",
   rangeText: "Stuff",
   playlistData: {},
+  playlistID: "",
 }));
 
 export const useRecommendedStore = create((set) => ({
