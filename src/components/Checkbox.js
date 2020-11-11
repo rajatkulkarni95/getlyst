@@ -4,9 +4,9 @@ export const Checkbox = ({ name, handleChange, selected }) => {
       <label
         id={name}
         className={
-          "group inline-block rounded-md text-sm md:text-base bg-gray-300 hover:bg-gray-500 whitespace-no-wrap my-1 mx-1 md:mx-2 px-3 py-2 lg:transition-all lg:duration-100 cursor-pointer " +
+          "group inline-block rounded-md text-sm md:text-base bg-gray-300 hover:bg-gray-500 whitespace-no-wrap my-1 mx-1 md:mx-2 px-3 py-2 cursor-pointer " +
           (selected && selected.includes(name)
-            ? "bg-green-600 text-white"
+            ? "bg-green-600 text-white hover:bg-green-700"
             : "bg-gray-300 text-black")
         }
       >

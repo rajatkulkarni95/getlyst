@@ -17,6 +17,7 @@ export const getUser = () =>
   axios
     .get("https://api.spotify.com/v1/me", { headers })
     .then(({ data }) => {
+      useStore.setState({ userID: data.id });
       window.localStorage.setItem("user", data.id);
     })
     .catch((err) => console.log(err));

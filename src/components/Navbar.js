@@ -11,8 +11,9 @@ export const Navbar = () => {
     const user = window.localStorage.getItem("user");
     if (!user || user === "undefined") {
       getUser();
+    } else {
+      useStore.setState({ userID: user });
     }
-    useStore.setState({ userID: user });
 
     return () => null;
   }, []);
