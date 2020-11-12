@@ -22,6 +22,7 @@
     "build:tailwind": "tailwindcss build src/assets/tailwind.css -o src/assets/tailwind.output.css",
     "prestart": "yarn build:tailwind",
     "prebuild": "yarn build:tailwind",
+    "postbuild": "purgecss --css build/static/css/*.css --content build/index.html build/static/js/*.js --output build/static/css",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -46,6 +47,7 @@
     ]
   },
   "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^3.0.0",
     "@tailwindcss/custom-forms": "^0.2.1",
     "tailwindcss": "^1.9.6"
   }
