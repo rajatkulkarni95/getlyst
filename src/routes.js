@@ -4,6 +4,7 @@ import { useStore } from "./store";
 import { lazy, Suspense } from "react";
 import ErrorPage from "./containers/Error";
 import Navbar from "./components/Navbar";
+import { Loader } from "./components/Loader";
 
 const MainScreen = lazy(() => import("./containers/Main"));
 const Recommended = lazy(() => import("./containers/Recommended"));
@@ -11,7 +12,7 @@ const Review = lazy(() => import("./containers/Review"));
 
 export const ProtectedRoutes = () => {
   return (
-    <Suspense fallback={<h2>Loading ...</h2>}>
+    <Suspense fallback={<Loader />}>
       <Switch>
         <Route exact path="/">
           <LoginScreen />
