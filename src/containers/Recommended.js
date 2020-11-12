@@ -2,9 +2,9 @@ import { Card } from "../components/Card";
 import { useStore } from "../store";
 import { createPlaylist } from "../services";
 import { useEffect } from "react";
-import { Navbar } from "../components/Navbar";
 import { useSnackbar } from "notistack";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { SecondaryLink } from "../components/Button";
 
 const Recommended = () => {
   const {
@@ -39,7 +39,6 @@ const Recommended = () => {
 
   return (
     <div>
-      <Navbar />
       {recommendedTracks.length > 0 ? (
         <>
           <div className="lg:w-3/4 mx-auto flex justify-center">
@@ -83,12 +82,7 @@ const Recommended = () => {
           <h2 className="text-xl md:text-3xl text-center text-white font-semibold my-4">
             Did we skip the selection process?
           </h2>
-          <Link
-            to="/"
-            className="flex items-center mx-auto  w-3/4 md:w-64 justify-center px-4 py-2 border border-transparent text-sm leading-5 font-bold rounded-md text-black bg-white hover:bg-green-700 focus:outline-none focus:shadow-outline transition ease-in-out duration-150 cursor-pointer text-center"
-          >
-            Go Back to Home
-          </Link>
+          <SecondaryLink>Go Back to Home</SecondaryLink>
         </div>
       )}
     </div>
