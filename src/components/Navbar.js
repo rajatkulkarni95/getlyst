@@ -4,7 +4,7 @@ import { getUser } from "../services";
 import { useStore } from "../store";
 import { logout } from "../utils/logout";
 
-export const Navbar = () => {
+const Navbar = () => {
   const { userID } = useStore();
 
   useEffect(() => {
@@ -68,3 +68,5 @@ export const Navbar = () => {
     </nav>
   );
 };
+
+export default Navbar;

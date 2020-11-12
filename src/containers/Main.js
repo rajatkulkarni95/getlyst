@@ -1,6 +1,6 @@
 import { useRecommendedStore } from "../store";
 import { getRecommendedTracks } from "../services";
-import { Navbar } from "../components/Navbar";
+//import Navbar from "../components/Navbar";
 import { BasicForm } from "../components/BasicForm";
 import { Button } from "../components/Button";
 import { useHistory } from "react-router-dom";
@@ -32,7 +32,6 @@ const MainScreen = () => {
 
   return (
     <div className="p-4">
-      <Navbar />
       <div className="md:m-8 m-2 flex flex-col items-center">
         <h3 className="text-white text-xl md:text-2xl text-center font-semibold">
           What do you fancy today?

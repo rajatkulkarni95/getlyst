@@ -1,11 +1,9 @@
 import { Switch, Route, Redirect } from "react-router-dom";
 import LoginScreen from "./containers/Login";
-//import { MainScreen } from "./containers/Main";
-//import { Recommended } from "./containers/Recommended";
-import ErrorPage from "./containers/Error";
-//import { Review } from "./containers/Review";
 import { useStore } from "./store";
 import { lazy, Suspense } from "react";
+import ErrorPage from "./containers/Error";
+import Navbar from "./components/Navbar";
 
 const MainScreen = lazy(() => import("./containers/Main"));
 const Recommended = lazy(() => import("./containers/Recommended"));
@@ -18,11 +16,17 @@ export const ProtectedRoutes = () => {
         <Route exact path="/">
           <LoginScreen />
         </Route>
-        <ProtectedRoute path="/app" component={MainScreen} />
-        <ProtectedRoute path="/recommended" component={Recommended} />
-        <ProtectedRoute path="/review" component={Review} />
+
         <Route>
-          <ErrorPage />
+          <Navbar />
+          <Switch>
+            <ProtectedRoute exact path="/app" component={MainScreen} />
+            <ProtectedRoute exact path="/recommended" component={Recommended} />
+            <ProtectedRoute exact path="/review" component={Review} />
+            <Route>
+              <ErrorPage />
+            </Route>
+          </Switch>
         </Route>
       </Switch>
     </Suspense>
