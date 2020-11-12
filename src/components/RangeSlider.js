@@ -1,4 +1,4 @@
-export const RangeSlider = ({ handleSliderChange, value, min, max }) => {
+const RangeSlider = ({ handleSliderChange, value, min, max }) => {
   return (
     <div className="flex items-center justify-center outline-none">
       <input
@@ -12,3 +12,5 @@ export const RangeSlider = ({ handleSliderChange, value, min, max }) => {
     </div>
   );
 };
+
+export default RangeSlider;

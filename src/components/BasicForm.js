@@ -1,9 +1,9 @@
 import { useRecommendedStore, useStore } from "../store";
-import { Checkbox } from "./Checkbox";
+import Checkbox from "./Checkbox";
 import { popularGenres } from "../constants/genres";
 import { sliderText } from "../utils/sliderText";
 import { useSnackbar } from "notistack";
-import { RangeSlider } from "./RangeSlider";
+import RangeSlider from "./RangeSlider";
 import { useEffect } from "react";
 
 let selected = [];

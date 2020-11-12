@@ -1,4 +1,4 @@
-export const Checkbox = ({ name, handleChange, selected }) => {
+const Checkbox = ({ name, handleChange, selected }) => {
   return (
     <>
       <label
@@ -22,3 +22,5 @@ export const Checkbox = ({ name, handleChange, selected }) => {
     </>
   );
 };
+
+export default Checkbox;

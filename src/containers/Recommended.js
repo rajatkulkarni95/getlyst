@@ -1,4 +1,4 @@
-import { Card } from "../components/Card";
+import Card from "../components/Card";
 import { useStore } from "../store";
 import { createPlaylist } from "../services";
 import { useEffect } from "react";
