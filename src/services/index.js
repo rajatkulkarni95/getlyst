@@ -79,3 +79,9 @@ export const getPlaylistDetails = async (playlistID) => {
     .get(`https://api.spotify.com/v1/playlists/${playlistID}`, { headers })
     .catch((error) => error.response);
 };
+
+export const createRandomPlaylistName = async () => {
+  return await axios
+    .get("http://names.drycodes.com/1?nameOptions=all&separator=space")
+    .then((data) => console.log(data));
+};

@@ -1,6 +1,6 @@
 import Card from "../components/Card";
 import { useStore } from "../store";
-import { createPlaylist } from "../services";
+import { createPlaylist, createRandomPlaylistName } from "../services";
 import { useEffect } from "react";
 import { useSnackbar } from "notistack";
 import { useHistory } from "react-router-dom";
@@ -17,6 +17,10 @@ const Recommended = () => {
 
   const { enqueueSnackbar } = useSnackbar();
   const history = useHistory();
+
+  useEffect(() => {
+    createRandomPlaylistName();
+  });
 
   const handleSubmit = async () => {
     enqueueSnackbar("Playlist Created", {
