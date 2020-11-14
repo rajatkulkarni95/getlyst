@@ -18,10 +18,6 @@ const Recommended = () => {
   const { enqueueSnackbar } = useSnackbar();
   const history = useHistory();
 
-  useEffect(() => {
-    createRandomPlaylistName();
-  });
-
   const handleSubmit = async () => {
     enqueueSnackbar("Playlist Created", {
       preventDuplicate: true,
